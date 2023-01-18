@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1329826A29769C2D00DEB54F /* CreateCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1329826929769C2C00DEB54F /* CreateCategoryVC.swift */; };
+		13A374FA2977F8B300B385F2 /* NoteListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A374F92977F8B300B385F2 /* NoteListVC.swift */; };
+		13A374FC2978058F00B385F2 /* CreateNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A374FB2978058F00B385F2 /* CreateNoteVC.swift */; };
 		13DFCFA92972C565005030BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFCFA82972C565005030BA /* AppDelegate.swift */; };
 		13DFCFAB2972C565005030BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFCFAA2972C565005030BA /* SceneDelegate.swift */; };
 		13DFCFAD2972C565005030BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFCFAC2972C565005030BA /* ViewController.swift */; };
 		13DFCFB02972C565005030BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13DFCFAE2972C565005030BA /* Main.storyboard */; };
 		13DFCFB22972C568005030BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13DFCFB12972C568005030BA /* Assets.xcassets */; };
 		13DFCFB52972C568005030BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13DFCFB32972C568005030BA /* LaunchScreen.storyboard */; };
+		13DFCFBE2972C87A005030BA /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFCFBC2972C87A005030BA /* CollectionViewCell.swift */; };
+		13DFCFC42972CC24005030BA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFCFC32972CC24005030BA /* Category.swift */; };
+		13DFCFC72972CEC5005030BA /* SerializationTools in Frameworks */ = {isa = PBXBuildFile; productRef = 13DFCFC62972CEC5005030BA /* SerializationTools */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1329826929769C2C00DEB54F /* CreateCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryVC.swift; sourceTree = "<group>"; };
+		13A374F92977F8B300B385F2 /* NoteListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListVC.swift; sourceTree = "<group>"; };
+		13A374FB2978058F00B385F2 /* CreateNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteVC.swift; sourceTree = "<group>"; };
 		13DFCFA52972C565005030BA /* MyToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13DFCFA82972C565005030BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13DFCFAA2972C565005030BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +33,8 @@
 		13DFCFB12972C568005030BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13DFCFB42972C568005030BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13DFCFB62972C568005030BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13DFCFBC2972C87A005030BA /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		13DFCFC32972CC24005030BA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13DFCFC72972CEC5005030BA /* SerializationTools in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +68,44 @@
 		13DFCFA72972C565005030BA /* MyToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				13DFCFC12972CB95005030BA /* model */,
+				13DFCFC02972CB7E005030BA /* view */,
+				13DFCFC22972CBA4005030BA /* viewModel */,
 				13DFCFA82972C565005030BA /* AppDelegate.swift */,
-				13DFCFAA2972C565005030BA /* SceneDelegate.swift */,
-				13DFCFAC2972C565005030BA /* ViewController.swift */,
 				13DFCFAE2972C565005030BA /* Main.storyboard */,
 				13DFCFB12972C568005030BA /* Assets.xcassets */,
 				13DFCFB32972C568005030BA /* LaunchScreen.storyboard */,
 				13DFCFB62972C568005030BA /* Info.plist */,
 			);
 			path = MyToDoList;
+			sourceTree = "<group>";
+		};
+		13DFCFC02972CB7E005030BA /* view */ = {
+			isa = PBXGroup;
+			children = (
+				13DFCFAA2972C565005030BA /* SceneDelegate.swift */,
+				13DFCFAC2972C565005030BA /* ViewController.swift */,
+				13DFCFBC2972C87A005030BA /* CollectionViewCell.swift */,
+				1329826929769C2C00DEB54F /* CreateCategoryVC.swift */,
+				13A374F92977F8B300B385F2 /* NoteListVC.swift */,
+				13A374FB2978058F00B385F2 /* CreateNoteVC.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		13DFCFC12972CB95005030BA /* model */ = {
+			isa = PBXGroup;
+			children = (
+				13DFCFC32972CC24005030BA /* Category.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		13DFCFC22972CBA4005030BA /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +124,9 @@
 			dependencies = (
 			);
 			name = MyToDoList;
+			packageProductDependencies = (
+				13DFCFC62972CEC5005030BA /* SerializationTools */,
+			);
 			productName = MyToDoList;
 			productReference = 13DFCFA52972C565005030BA /* MyToDoList.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +155,9 @@
 				Base,
 			);
 			mainGroup = 13DFCF9C2972C565005030BA;
+			packageReferences = (
+				13DFCFC52972CEC5005030BA /* XCRemoteSwiftPackageReference "Swift-SerializationTools" */,
+			);
 			productRefGroup = 13DFCFA62972C565005030BA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,8 +185,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A374FC2978058F00B385F2 /* CreateNoteVC.swift in Sources */,
 				13DFCFAD2972C565005030BA /* ViewController.swift in Sources */,
+				13A374FA2977F8B300B385F2 /* NoteListVC.swift in Sources */,
+				13DFCFC42972CC24005030BA /* Category.swift in Sources */,
 				13DFCFA92972C565005030BA /* AppDelegate.swift in Sources */,
+				13DFCFBE2972C87A005030BA /* CollectionViewCell.swift in Sources */,
+				1329826A29769C2D00DEB54F /* CreateCategoryVC.swift in Sources */,
 				13DFCFAB2972C565005030BA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +410,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		13DFCFC52972CEC5005030BA /* XCRemoteSwiftPackageReference "Swift-SerializationTools" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RougeWare/Swift-SerializationTools.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		13DFCFC62972CEC5005030BA /* SerializationTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13DFCFC52972CEC5005030BA /* XCRemoteSwiftPackageReference "Swift-SerializationTools" */;
+			productName = SerializationTools;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 13DFCF9D2972C565005030BA /* Project object */;
 }
