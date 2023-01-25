@@ -14,45 +14,47 @@ import UIKit
 
 
 class Category {
-    var title : String
+    var id : String!
+    var title : String?
     var color : UIColor?
     
-    init(title: String, color: UIColor) {
+    init(title: String?, color: UIColor?) {
+        self.id = UUID().uuidString
         self.title = title
         self.color = color
     }
     
-     func toJson() -> Dictionary<String, Any> {
-        var json = Dictionary<String, Any>()
-         json["title"] = self.title
-         if self.color != nil {
-             json["color"] = Color(color: self.color!).toJson()
+     func toJson() -> [String : Any]{
 
-         }
-        return json
+         return  [
+         
+            "id" : self.id ??  UUID().uuidString,
+            "title" : self.title ?? "",
+
+            "color" : Color(color: self.color ?? .white).toJson()
+
+          
+
+
+         ]
         
     }
     
     
     
-    func fromJson(json : Dictionary<String, Any>) -> Category {
-        self.title =  json["title"] as! String
-        
+    static func fromJson(json : [String : Any]) -> Category? {
+        let category = Category(title: nil, color: nil)
+       category.title =  json["title"] as? String
+        category.id =  json["id"] as? String
+
         if json["color"] != nil {
-            self.color = jsonToUIColor(json: json["color"] as! Dictionary<String, Any>)
+            category.color = jsonToUIColor(json: json["color"] as! [String : Any])
         }
        
-        return self
-       
+        return category
    }
     
-    func jsonToUIColor(json : Dictionary<String, Any>) -> UIColor {
-        let uiColor = UIColor(ciColor: CIColor(red: json["r"] as! CGFloat, green: json["g"] as! CGFloat, blue: json["b"] as! CGFloat, alpha: json["a"] as! CGFloat))
-        
 
-        return uiColor
-         
-     }
     
 }
 
@@ -67,16 +69,32 @@ class Color {
         self.color = color
     }
 
-   func toJson() -> Dictionary<String, Any>  {
-       var json = Dictionary<String, Any>()
-       json["r"] = color.ciColor.red
-       json["g"] = color.ciColor.green
-       json["b"] = color.ciColor.blue
-       json["a"] = color.ciColor.alpha
-       return json
+   func toJson() ->  [String : Any]  {
+       let ciColor : CIColor = CIColor(color: color)
+       return  [
+       
+        "r" : ciColor.red,
+        "g" : ciColor.green,
+        "b" : ciColor.blue,
+        "a" : ciColor.alpha
+
+
+       ]
+   
         
     }
     
 
     
 }
+
+
+
+
+func jsonToUIColor(json : [String : Any]) -> UIColor {
+    let uiColor = UIColor(ciColor: CIColor(red: json["r"] as! CGFloat, green: json["g"] as! CGFloat, blue: json["b"] as! CGFloat, alpha: json["a"] as! CGFloat))
+    
+
+    return uiColor
+     
+ }

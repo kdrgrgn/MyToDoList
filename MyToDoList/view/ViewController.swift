@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import FirebaseCore
 
 private let itemsPerRow: CGFloat = 2
+private var toDoListVM: ToDoListViewModel! = ToDoListViewModel()
 
 
 private let sectionInsets = UIEdgeInsets(
@@ -19,22 +21,16 @@ private let sectionInsets = UIEdgeInsets(
 
 class ViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return toDoListVM.categoryList.count
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
-
-        
+               
         if let cell =  self.collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as? CollectionViewCell{
 
-
-
-
-
-            cell.category = Category(title: "title \(indexPath.row)", color: .red)
+            cell.category = toDoListVM.categoryList[indexPath.row]
             
             return cell
         } else {
@@ -49,37 +45,64 @@ class ViewController: UIViewController, UICollectionViewDelegate,UICollectionVie
         nextVC.modalPresentationStyle = .fullScreen
         nextVC.navigationController?.isToolbarHidden = false
         nextVC.topBarTitle = "title \(indexPath.row)"
+        
+        
         self.navigationController?.pushViewController(nextVC, animated: true)
 
     }
 
     
     
-
+  
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    override func viewDidLoad() {
+    
+
+    
+    
+    override func viewDidLoad()  {
         super.viewDidLoad()
-        initPage()
+     //   FirebaseApp.configure()
+         initPage()
     
 
     }
     
-    func initPage(){
+    func initPage() {
         self.navigationController?.isToolbarHidden = false
         self.navigationController?.navigationBar.topItem?.title = "Kategoriler"
-
+        self.collectionView.isHidden = true
+        self.collectionView.refreshControl = UIRefreshControl()
+        self.collectionView.refreshControl?.addTarget(self, action: #selector(getData), for: .valueChanged)
         
-
-
+        
         // replace add with your function
-
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
+        getData()
+        
+
     }
+    
+    @objc func getData() {
+            print("girdii refresh")
+            Task {
+                        await toDoListVM.getCategories()
+                DispatchQueue.main.async{
+                    print("cekilidiii")
+
+                    self.collectionView.reloadData()
+                    self.collectionView.isHidden = false
+                    self.collectionView.refreshControl?.endRefreshing()
+                  }
+                }
+
+         
+        }
+    
 
     @objc func add(){
         let nextVC = CreateCategoryVC()

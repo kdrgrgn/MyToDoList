@@ -10,6 +10,7 @@ import UIKit
 class CreateCategoryVC: UIViewController {
 
     
+    private var toDoListVM: ToDoListViewModel! = ToDoListViewModel()
 
     
     private let titleLabel: UILabel = {
@@ -39,7 +40,7 @@ class CreateCategoryVC: UIViewController {
         _button.setTitleColor(.white, for: .normal)
         _button.layer.cornerRadius = 20
 
-        _button.addTarget(self, action: #selector(createCategory), for: .allEvents)
+        _button.addTarget(self, action: #selector(createCategory), for: .touchDown)
         _button.translatesAutoresizingMaskIntoConstraints = false
 
         return _button
@@ -130,6 +131,12 @@ class CreateCategoryVC: UIViewController {
     
     
     @objc func createCategory() {
+        DispatchQueue.main.async {
+            self.toDoListVM.createCategory(category: Category(title: self.titleField.text,color: self.view.backgroundColor))
+
+        }
+        self.dismiss(animated: true)
+        
         
     }
 

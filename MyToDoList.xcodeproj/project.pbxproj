@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1329826A29769C2D00DEB54F /* CreateCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1329826929769C2C00DEB54F /* CreateCategoryVC.swift */; };
+		1355F53F297D458000FF36DC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1355F53E297D458000FF36DC /* FirebaseAnalytics */; };
+		1355F541297D458000FF36DC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1355F540297D458000FF36DC /* FirebaseFirestore */; };
+		1355F543297D4C1800FF36DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1355F542297D4C1800FF36DC /* GoogleService-Info.plist */; };
+		1355F545297D4E4E00FF36DC /* ToDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1355F544297D4E4E00FF36DC /* ToDoListViewModel.swift */; };
 		13A374FA2977F8B300B385F2 /* NoteListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A374F92977F8B300B385F2 /* NoteListVC.swift */; };
 		13A374FC2978058F00B385F2 /* CreateNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A374FB2978058F00B385F2 /* CreateNoteVC.swift */; };
 		13DFCFA92972C565005030BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFCFA82972C565005030BA /* AppDelegate.swift */; };
@@ -23,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		1329826929769C2C00DEB54F /* CreateCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryVC.swift; sourceTree = "<group>"; };
+		1355F542297D4C1800FF36DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		1355F544297D4E4E00FF36DC /* ToDoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewModel.swift; sourceTree = "<group>"; };
 		13A374F92977F8B300B385F2 /* NoteListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListVC.swift; sourceTree = "<group>"; };
 		13A374FB2978058F00B385F2 /* CreateNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteVC.swift; sourceTree = "<group>"; };
 		13DFCFA52972C565005030BA /* MyToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,7 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1355F53F297D458000FF36DC /* FirebaseAnalytics in Frameworks */,
 				13DFCFC72972CEC5005030BA /* SerializationTools in Frameworks */,
+				1355F541297D458000FF36DC /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +83,7 @@
 				13DFCFAE2972C565005030BA /* Main.storyboard */,
 				13DFCFB12972C568005030BA /* Assets.xcassets */,
 				13DFCFB32972C568005030BA /* LaunchScreen.storyboard */,
+				1355F542297D4C1800FF36DC /* GoogleService-Info.plist */,
 				13DFCFB62972C568005030BA /* Info.plist */,
 			);
 			path = MyToDoList;
@@ -104,6 +113,7 @@
 		13DFCFC22972CBA4005030BA /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1355F544297D4E4E00FF36DC /* ToDoListViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -126,6 +136,8 @@
 			name = MyToDoList;
 			packageProductDependencies = (
 				13DFCFC62972CEC5005030BA /* SerializationTools */,
+				1355F53E297D458000FF36DC /* FirebaseAnalytics */,
+				1355F540297D458000FF36DC /* FirebaseFirestore */,
 			);
 			productName = MyToDoList;
 			productReference = 13DFCFA52972C565005030BA /* MyToDoList.app */;
@@ -157,6 +169,7 @@
 			mainGroup = 13DFCF9C2972C565005030BA;
 			packageReferences = (
 				13DFCFC52972CEC5005030BA /* XCRemoteSwiftPackageReference "Swift-SerializationTools" */,
+				1355F53D297D458000FF36DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 13DFCFA62972C565005030BA /* Products */;
 			projectDirPath = "";
@@ -173,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13DFCFB52972C568005030BA /* LaunchScreen.storyboard in Resources */,
+				1355F543297D4C1800FF36DC /* GoogleService-Info.plist in Resources */,
 				13DFCFB22972C568005030BA /* Assets.xcassets in Resources */,
 				13DFCFB02972C565005030BA /* Main.storyboard in Resources */,
 			);
@@ -185,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1355F545297D4E4E00FF36DC /* ToDoListViewModel.swift in Sources */,
 				13A374FC2978058F00B385F2 /* CreateNoteVC.swift in Sources */,
 				13DFCFAD2972C565005030BA /* ViewController.swift in Sources */,
 				13A374FA2977F8B300B385F2 /* NoteListVC.swift in Sources */,
@@ -412,6 +427,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1355F53D297D458000FF36DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		13DFCFC52972CEC5005030BA /* XCRemoteSwiftPackageReference "Swift-SerializationTools" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RougeWare/Swift-SerializationTools.git";
@@ -423,6 +446,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1355F53E297D458000FF36DC /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1355F53D297D458000FF36DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		1355F540297D458000FF36DC /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1355F53D297D458000FF36DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
 		13DFCFC62972CEC5005030BA /* SerializationTools */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 13DFCFC52972CEC5005030BA /* XCRemoteSwiftPackageReference "Swift-SerializationTools" */;

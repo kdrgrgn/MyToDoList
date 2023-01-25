@@ -9,11 +9,11 @@ import UIKit
 
 class CreateNoteVC: UIViewController {
     
-    
+
     private let titleLabel: UILabel = {
       let label = UILabel()
         label.textAlignment = .center
-        label.text = "Kategori Oluştur"
+        label.text = "Not Oluştur"
         label.font = UIFont.systemFont(ofSize: 20)
       label.translatesAutoresizingMaskIntoConstraints = false
       return label
@@ -22,19 +22,47 @@ class CreateNoteVC: UIViewController {
     
     private let titleField : UITextField = {
         var field = UITextField()
+
         field.translatesAutoresizingMaskIntoConstraints = false
         field.placeholder = "Not Başlığı"
+        field.textAlignment = .center
+
         field.layer.cornerRadius = 15
         field.layer.borderWidth = 0.2
         return field
+    }()
+    
+    
+    
+    private lazy var datePicker : UIDatePicker = {
+        var picker = UIDatePicker()
+
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        
+
+        picker.datePickerMode = .dateAndTime
+        picker.contentHorizontalAlignment = .center
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        
+        picker.minimumDate = Date()
+
+   
+        
+        
+        
+        return picker
     }()
     
     private let contentField : UITextField = {
         var field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.placeholder = "İçerik"
-        field.layoutMargins.left = 15
-        field.layoutMargins.right = 15
+        field.textAlignment = .center
+
         field.layer.cornerRadius = 15
         field.layer.borderWidth = 0.2
         
@@ -64,8 +92,9 @@ initPage()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.topItem?.title = "Not Oluştur"
         view.addSubview(titleField)
+        view.addSubview(datePicker)
+
         view.addSubview(contentField)
         view.addSubview(createButton)
         view.addSubview(titleLabel)
@@ -76,20 +105,26 @@ initPage()
         
       NSLayoutConstraint.activate([
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        titleLabel.heightAnchor.constraint(equalToConstant: 50),
+        titleLabel.heightAnchor.constraint(equalToConstant: 30),
         titleLabel.widthAnchor.constraint(equalToConstant: 150),
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
         
         
-        titleField.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 50),
+        titleField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
         titleField.widthAnchor.constraint(equalToConstant: view.frame.width - 100),
         titleField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         titleField.heightAnchor.constraint(equalToConstant: 50.0),
         
-        contentField.topAnchor.constraint(equalTo: titleField.bottomAnchor, constant: 50),
+        contentField.topAnchor.constraint(equalTo: titleField.bottomAnchor, constant: 30),
         contentField.widthAnchor.constraint(equalToConstant: view.frame.width - 100),
         contentField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        contentField.heightAnchor.constraint(equalToConstant: 300.0),
+        contentField.heightAnchor.constraint(equalToConstant: 150),
+        
+        
+        datePicker.topAnchor.constraint(equalTo: contentField.bottomAnchor, constant: 30),
+        datePicker.widthAnchor.constraint(equalToConstant: view.frame.width - 100),
+        datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        datePicker.heightAnchor.constraint(equalToConstant: 50.0),
 
         createButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
         createButton.widthAnchor.constraint(equalToConstant: view.frame.width - 100),
