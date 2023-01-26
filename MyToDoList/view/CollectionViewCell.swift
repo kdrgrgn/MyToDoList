@@ -17,6 +17,7 @@ class CollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
        super.layoutSubviews()
         //radius
+        
         self.layer.cornerRadius = 30
         self.contentView.layer.cornerRadius = 30
         self.contentView.layer.borderWidth = 1.0
@@ -33,7 +34,6 @@ class CollectionViewCell: UICollectionViewCell {
         //radius
         
         
-        
         title.textAlignment = .center
         title.numberOfLines = 3
         title.center = self.contentView.center
@@ -41,6 +41,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         if category?.color != nil {
             self.backgroundColor = category?.color
+            self.title.textColor = ((category?.color?.isLight()) ?? true) ? .black : .white
 
         }
         self.title.text = category?.title ?? "hata"
@@ -59,3 +60,5 @@ class CollectionViewCell: UICollectionViewCell {
     
 
 }
+
+

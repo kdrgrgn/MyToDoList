@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130A40512982792600D585BC /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130A40502982792600D585BC /* extensions.swift */; };
+		130A4053298283BB00D585BC /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130A4052298283BB00D585BC /* Note.swift */; };
 		1329826A29769C2D00DEB54F /* CreateCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1329826929769C2C00DEB54F /* CreateCategoryVC.swift */; };
 		1355F53F297D458000FF36DC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1355F53E297D458000FF36DC /* FirebaseAnalytics */; };
 		1355F541297D458000FF36DC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1355F540297D458000FF36DC /* FirebaseFirestore */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		130A40502982792600D585BC /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		130A4052298283BB00D585BC /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		1329826929769C2C00DEB54F /* CreateCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryVC.swift; sourceTree = "<group>"; };
 		1355F542297D4C1800FF36DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1355F544297D4E4E00FF36DC /* ToDoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewModel.swift; sourceTree = "<group>"; };
@@ -57,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		130A404F2982791100D585BC /* constant */ = {
+			isa = PBXGroup;
+			children = (
+				130A40502982792600D585BC /* extensions.swift */,
+			);
+			path = constant;
+			sourceTree = "<group>";
+		};
 		13DFCF9C2972C565005030BA = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +88,7 @@
 		13DFCFA72972C565005030BA /* MyToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				130A404F2982791100D585BC /* constant */,
 				13DFCFC12972CB95005030BA /* model */,
 				13DFCFC02972CB7E005030BA /* view */,
 				13DFCFC22972CBA4005030BA /* viewModel */,
@@ -106,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				13DFCFC32972CC24005030BA /* Category.swift */,
+				130A4052298283BB00D585BC /* Note.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -204,7 +218,9 @@
 				13DFCFAD2972C565005030BA /* ViewController.swift in Sources */,
 				13A374FA2977F8B300B385F2 /* NoteListVC.swift in Sources */,
 				13DFCFC42972CC24005030BA /* Category.swift in Sources */,
+				130A40512982792600D585BC /* extensions.swift in Sources */,
 				13DFCFA92972C565005030BA /* AppDelegate.swift in Sources */,
+				130A4053298283BB00D585BC /* Note.swift in Sources */,
 				13DFCFBE2972C87A005030BA /* CollectionViewCell.swift in Sources */,
 				1329826A29769C2D00DEB54F /* CreateCategoryVC.swift in Sources */,
 				13DFCFAB2972C565005030BA /* SceneDelegate.swift in Sources */,

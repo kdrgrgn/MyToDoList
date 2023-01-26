@@ -44,8 +44,7 @@ class ViewController: UIViewController, UICollectionViewDelegate,UICollectionVie
         let nextVC = NoteListVC()
         nextVC.modalPresentationStyle = .fullScreen
         nextVC.navigationController?.isToolbarHidden = false
-        nextVC.topBarTitle = "title \(indexPath.row)"
-        
+        nextVC.category = toDoListVM.categoryList[indexPath.row]
         
         self.navigationController?.pushViewController(nextVC, animated: true)
 
@@ -60,6 +59,21 @@ class ViewController: UIViewController, UICollectionViewDelegate,UICollectionVie
     
 
     
+    private let myActivityIndicator : UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        
+       
+              
+              // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        indicator.hidesWhenStopped = true
+              
+              // Start Activity Indicator
+        indicator.startAnimating()
+        return indicator
+    }()
+   
+    
+    
     
     override func viewDidLoad()  {
         super.viewDidLoad()
@@ -69,7 +83,14 @@ class ViewController: UIViewController, UICollectionViewDelegate,UICollectionVie
 
     }
     
+
+    
+    
+    
     func initPage() {
+        myActivityIndicator.center = view.center
+        view.addSubview(myActivityIndicator)
+        
         self.navigationController?.isToolbarHidden = false
         self.navigationController?.navigationBar.topItem?.title = "Kategoriler"
         self.collectionView.isHidden = true
@@ -82,13 +103,13 @@ class ViewController: UIViewController, UICollectionViewDelegate,UICollectionVie
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         getData()
         
 
     }
     
-    @objc func getData() {
-            print("girdii refresh")
+    @objc func getData()  {
             Task {
                         await toDoListVM.getCategories()
                 DispatchQueue.main.async{
@@ -96,6 +117,7 @@ class ViewController: UIViewController, UICollectionViewDelegate,UICollectionVie
 
                     self.collectionView.reloadData()
                     self.collectionView.isHidden = false
+                    self.myActivityIndicator.stopAnimating()
                     self.collectionView.refreshControl?.endRefreshing()
                   }
                 }

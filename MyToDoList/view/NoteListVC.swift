@@ -10,55 +10,70 @@ import UIKit
 class NoteListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     
     
+    private var toDoListVM: ToDoListViewModel! = ToDoListViewModel()
     
+    var category : Category?
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return toDoListVM.noteList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        
-//        let cell =  self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//
-//
-//
+
         var content = cell.defaultContentConfiguration()
-        content.text = "title \(indexPath.row)"
+        content.text = toDoListVM.noteList[indexPath.row].title
+        content.secondaryText = toDoListVM.noteList[indexPath.row].note
         cell.contentConfiguration = content
 //
             return cell
      
     }
     
-    var topBarTitle : String?
 
     
     private let tableView : UITableView = {
        var table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.isHidden = true
         return table
     }()
     
+    private let myActivityIndicator : UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+      indicator.hidesWhenStopped = true
+        indicator.startAnimating()
+        return indicator
+    }()
+   
+    
     override func viewDidLayoutSubviews() {
-        initPage()
+        super.viewDidLayoutSubviews()
+        
+          self.navigationController?.navigationBar.topItem?.title = category?.title ?? ""
+          self.navigationController?.navigationBar.topItem?.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
     }
     
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        myActivityIndicator.center = view.center
+        view.addSubview(myActivityIndicator)
         view.addSubview(tableView)
-        // Do any additional setup after loading the view.
+        
+        initPage()
+
     }
     
     
     func initPage(){
-        self.navigationController?.navigationBar.topItem?.title = topBarTitle
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
-
+ 
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.addTarget(self, action: #selector(getData), for: .valueChanged)
         tableView.delegate = self
         tableView.dataSource = self
         NSLayoutConstraint.activate([
@@ -69,14 +84,33 @@ class NoteListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
         ])
         
         
+        getData()
+        
     }
+    
+    
+    @objc func getData()  {
+            Task {
+                await toDoListVM.getNotes(id:category!.id!)
+                DispatchQueue.main.async{
+                    print("cekilidiii")
+
+                    self.tableView.reloadData()
+                    self.tableView.isHidden = false
+                    self.myActivityIndicator.stopAnimating()
+                    self.tableView.refreshControl?.endRefreshing()
+                  }
+                }
+
+         
+        }
+    
+    
     
     @objc func add(){
         let nextVC = CreateNoteVC()
-//        nextVC.modalPresentationStyle = .fullScreen
-//        nextVC.navigationController?.isToolbarHidden = false
-//        nextVC.navigationController?.navigationBar.topItem?.title = "Kategori Ekle"
-//        self.navigationController?.pushViewController(nextVC, animated: true)
+        nextVC.categoryId = category?.id
+
         
           self.present(nextVC, animated: true)
     }

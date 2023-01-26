@@ -9,6 +9,8 @@ import UIKit
 
 class CreateNoteVC: UIViewController {
     
+    private var toDoListVM: ToDoListViewModel! = ToDoListViewModel()
+    var categoryId : String!
 
     private let titleLabel: UILabel = {
       let label = UILabel()
@@ -77,7 +79,7 @@ class CreateNoteVC: UIViewController {
         _button.setTitleColor(.white, for: .normal)
         _button.layer.cornerRadius = 20
 
-        _button.addTarget(self, action: #selector(createNote), for: .allEvents)
+        _button.addTarget(self, action: #selector(createNote), for: .touchDown)
         _button.translatesAutoresizingMaskIntoConstraints = false
 
         return _button
@@ -137,7 +139,12 @@ initPage()
         
     }
     @objc func createNote(){
-        
+        DispatchQueue.main.async {
+            self.toDoListVM.createNote(note: Note(id: UUID().uuidString, note: self.contentField.text ?? "",
+                                                  title: self.titleField.text ?? "", categoryId: self.categoryId, date: self.datePicker.date))
+
+        }
+        self.dismiss(animated: true)
     }
  
 
